@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1743971091103,
@@ -20,6 +20,10 @@
                 {
                     "date": 1743971680846,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,10 +38,36 @@\n                     <input type=\"password\" id=\"password\" required>\r\n                 </div>\r\n                 <button type=\"submit\">Iniciar Sesión</button>\r\n             </form>\r\n+            <p>¿No tienes cuenta? <a href=\"#\" id=\"showRegisterLink\">Regístrate aquí</a></p>\r\n         </section>\r\n \r\n+        <!-- Sección de Registro -->\r\n+        <section id=\"registerSection\" class=\"hidden\">\r\n+            <h2>Registro de Usuario</h2>\r\n+            <form id=\"registerForm\">\r\n+                <div class=\"form-group\">\r\n+                    <label for=\"regNombre\">Nombre:</label>\r\n+                    <input type=\"text\" id=\"regNombre\" required>\r\n+                </div>\r\n+                <div class=\"form-group\">\r\n+                    <label for=\"regTelefono\">Teléfono:</label>\r\n+                    <input type=\"tel\" id=\"regTelefono\" required>\r\n+                </div>\r\n+                <div class=\"form-group\">\r\n+                    <label for=\"regEmail\">Email:</label>\r\n+                    <input type=\"email\" id=\"regEmail\" required>\r\n+                </div>\r\n+                <div class=\"form-group\">\r\n+                    <label for=\"regPassword\">Contraseña:</label>\r\n+                    <input type=\"password\" id=\"regPassword\" required>\r\n+                </div>\r\n+                <button type=\"submit\">Registrarse</button>\r\n+            </form>\r\n+            <p>¿Ya tienes cuenta? <a href=\"#\" id=\"showLoginLink\">Inicia sesión aquí</a></p>\r\n+        </section>\r\n+\r\n         <!-- Sección de Productos -->\r\n         <section id=\"productosSection\" class=\"hidden\">\r\n             <h2>Gestión de Productos</h2>\r\n             <button id=\"addProductoBtn\">Agregar Producto</button>\r\n"
+                },
+                {
+                    "date": 1743973754565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,11 +96,10 @@\n     </main>\r\n \r\n     <!-- Modales -->\r\n     <div id=\"modal\" class=\"modal hidden\">\r\n-        <div class=\"modal-content\">\r\n-            <span class=\"close\">&times;</span>\r\n-            <div id=\"modalContent\"></div>\r\n+        <div id=\"modalContent\" class=\"modal-content\">\r\n+            <!-- El contenido del modal se cargará dinámicamente -->\r\n         </div>\r\n     </div>\r\n \r\n     <script src=\"../scripts/config.js\"></script>\r\n"
                 }
             ],
             "date": 1743971091103,

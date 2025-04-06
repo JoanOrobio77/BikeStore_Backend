@@ -21,8 +21,8 @@ const categorias = {
             const response = await fetch(`${API_URL}/categorias`, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${auth.getToken()}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth.getToken()}`
                 },
                 body: JSON.stringify(categoriaData)
             });
@@ -39,8 +39,8 @@ const categorias = {
             const response = await fetch(`${API_URL}/categorias/${id}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${auth.getToken()}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth.getToken()}`
                 },
                 body: JSON.stringify(categoriaData)
             });
@@ -54,8 +54,35 @@ const categorias = {
     // Eliminar categoría
     async delete(id) {
         try {
+            if (!confirm('¿Está seguro de que desea eliminar esta categoría? Esta acción no se puede deshacer.')) {
+                return;
+            }
+
             const response = await fetch(`${API_URL}/categorias/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${auth.getToken()}`
+                }
+            });
+
+            const data = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(data.message || 'Error al eliminar la categoría');
+            }
+
+            alert('Categoría eliminada exitosamente');
+            this.loadCategorias();
+        } catch (error) {
+            console.error('Error:', error);
+            alert(error.message || 'Error al eliminar la categoría. Asegúrese de que no haya productos asociados.');
+        }
+    },
+
+    // Obtener categoría por ID
+    async getById(id) {
+        try {
+            const response = await fetch(`${API_URL}/categorias/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${auth.getToken()}`
                 }
@@ -70,6 +97,13 @@ const categorias = {
     // Renderizar lista de categorías
     renderList(categorias) {
         const container = document.getElementById('categoriasList');
+        if (!container) return;
+
+        if (!categorias || categorias.length === 0) {
+            container.innerHTML = '<p>No hay categorías disponibles.</p>';
+            return;
+        }
+
         container.innerHTML = `
             <table>
                 <thead>
@@ -97,37 +131,45 @@ const categorias = {
 
     // Mostrar modal de edición
     async showEditModal(id) {
-        const categoria = await this.getById(id);
-        const modal = document.getElementById('modal');
-        const modalContent = document.getElementById('modalContent');
-        
-        modalContent.innerHTML = `
-            <h3>Editar Categoría</h3>
-            <form id="editCategoriaForm">
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" value="${categoria.nombre_categoria}" required>
-                </div>
-                <button type="submit">Guardar</button>
-            </form>
-        `;
-
-        modal.classList.remove('hidden');
-        
-        document.getElementById('editCategoriaForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = {
-                nombre_categoria: document.getElementById('nombre').value
-            };
+        try {
+            const categoria = await this.getById(id);
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
             
-            try {
-                await this.update(id, formData);
-                modal.classList.add('hidden');
-                this.loadCategorias();
-            } catch (error) {
-                alert(error.message);
-            }
-        });
+            modalContent.innerHTML = `
+                <h3>Editar Categoría</h3>
+                <form id="editCategoriaForm">
+                    <div class="form-group">
+                        <label for="nombre_categoria">Nombre:</label>
+                        <input type="text" id="nombre_categoria" value="${categoria.nombre_categoria}" required>
+                    </div>
+                    <button type="submit">Guardar</button>
+                </form>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('show');
+            
+            document.getElementById('editCategoriaForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = {
+                    nombre_categoria: document.getElementById('nombre_categoria').value
+                };
+                
+                try {
+                    await this.update(id, formData);
+                    modal.classList.remove('show');
+                    modal.classList.add('hidden');
+                    this.loadCategorias();
+                } catch (error) {
+                    console.error('Error al actualizar categoría:', error);
+                    alert(error.message || 'Error al actualizar la categoría');
+                }
+            });
+        } catch (error) {
+            console.error('Error al cargar categoría:', error);
+            alert('Error al cargar los datos de la categoría');
+        }
     },
 
     // Cargar categorías
@@ -136,7 +178,8 @@ const categorias = {
             const categorias = await this.getAll();
             this.renderList(categorias);
         } catch (error) {
-            alert('Error al cargar categorías');
+            console.error('Error al cargar categorías:', error);
+            alert('Error al cargar las categorías');
         }
     }
 };
@@ -154,27 +197,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>Nueva Categoría</h3>
                 <form id="addCategoriaForm">
                     <div class="form-group">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" required>
+                        <label for="nombre_categoria">Nombre:</label>
+                        <input type="text" id="nombre_categoria" required>
                     </div>
-                    <button type="submit">Crear</button>
+                    <button type="submit">Crear Categoría</button>
                 </form>
             `;
 
             modal.classList.remove('hidden');
+            modal.classList.add('show');
             
             document.getElementById('addCategoriaForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const formData = {
-                    nombre_categoria: document.getElementById('nombre').value
+                    nombre_categoria: document.getElementById('nombre_categoria').value
                 };
                 
                 try {
                     await categorias.create(formData);
+                    modal.classList.remove('show');
                     modal.classList.add('hidden');
                     categorias.loadCategorias();
                 } catch (error) {
-                    alert(error.message);
+                    console.error('Error al crear categoría:', error);
+                    alert(error.message || 'Error al crear la categoría');
                 }
             });
         });

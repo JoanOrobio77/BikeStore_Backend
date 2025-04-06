@@ -26,7 +26,7 @@ id_producto INT auto_increment primary key,
 nombre_producto varchar (100),
 descripcion TEXT,
 precio decimal(10,2),
-imagen MEDIUMBLOB,
+imagen BLOB,
 id_categoria INT,
 foreign key (id_categoria) references Categoria(id_categoria)
 );
@@ -58,3 +58,8 @@ subtotal decimal(10,2),
 foreign key (id_venta) references Ventas(id_venta),
 foreign key (id_producto) references Producto(id_producto)
 );
+
+select * from usuarios;
+select * from categoria;
+
+

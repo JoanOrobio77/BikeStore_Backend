@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/db/bikestore.sql",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1743974912143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1743974912143,
+            "name": "Commit-0",
+            "content": "Create DATABASE Bike_Store;\r\nUse Bike_Store;\r\n\r\ncreate table rol(\r\n\tid_rol int primary key auto_increment,\r\n    nombre_rol varchar(50)\r\n);\r\n\r\nCREATE TABLE Usuarios(\r\nid_usuario INT auto_increment primary key,\r\nnombre varchar (50),\r\ntelefono varchar (20),\r\nemail varchar (100),\r\ncontrasena varchar (500),\r\nid_rol INT,\r\nforeign key (id_rol) references rol(id_rol)\r\n);\r\n\r\ncreate table Categoria (\r\nid_categoria INT auto_increment primary key,\r\nnombre_categoria varchar (40)\r\n);\r\n\r\ncreate table Producto (\r\nid_producto INT auto_increment primary key,\r\nnombre_producto varchar (100),\r\ndescripcion TEXT,\r\nprecio decimal(10,2),\r\nimagen MEDIUMBLOB,\r\nid_categoria INT,\r\nforeign key (id_categoria) references Categoria(id_categoria)\r\n);\r\n\r\nCreate table Stock (\r\nid_stock int auto_increment primary key,\r\nid_producto INT,\r\ncantidad int,\r\nfecha_ingreso date, \r\nfecha_salida date,\r\nforeign key (id_producto) references Producto(id_producto)\r\n);\r\n\r\ncreate table Ventas (\r\nid_venta INT auto_increment primary key,\r\nfecha_venta date,\r\nid_usuario INT,\r\ntotal decimal(10,2),\r\nforeign key (id_usuario) references Usuarios(id_usuario)\r\n);\r\n\r\ncreate table Detalle_Venta (\r\nid_detalle_venta INT auto_increment primary key,\r\nid_venta INT,\r\nid_producto INT,\r\ncantidad INT,\r\nprecio_unitario decimal(10,2),\r\nsubtotal decimal(10,2),\r\nforeign key (id_venta) references Ventas(id_venta),\r\nforeign key (id_producto) references Producto(id_producto)\r\n);\r\n"
+        }
+    ]
+}
