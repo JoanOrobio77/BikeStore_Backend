@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".gitignore",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1743970409534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1743970409534,
+            "name": "Commit-0",
+            "content": "# Dependencias\r\nnode_modules/\r\nnpm-debug.log\r\nyarn-debug.log\r\nyarn-error.log\r\npackage-lock.json\r\nyarn.lock\r\n\r\n# Archivos de entorno\r\n.env\r\n.env.local\r\n.env.development.local\r\n.env.test.local\r\n.env.production.local\r\n\r\n# Directorios de carga\r\nuploads/\r\nuploads/*\r\n\r\n# Logs\r\nlogs/\r\n*.log\r\nnpm-debug.log*\r\nyarn-debug.log*\r\nyarn-error.log*\r\n\r\n# Directorios de compilación\r\ndist/\r\nbuild/\r\ncoverage/\r\n\r\n# Archivos del sistema operativo\r\n.DS_Store\r\nThumbs.db\r\ndesktop.ini\r\n\r\n# Archivos de IDE y editores\r\n.idea/\r\n.vscode/\r\n*.swp\r\n*.swo\r\n*.swn\r\n*.bak\r\n\r\n# Archivos temporales\r\ntmp/\r\ntemp/ "
+        }
+    ]
+}

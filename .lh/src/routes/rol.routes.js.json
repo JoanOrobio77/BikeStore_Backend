@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/routes/rol.routes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1743970172253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1743970172253,
+            "name": "Commit-0",
+            "content": "const express = require('express');\r\nconst router = express.Router();\r\nconst rolController = require('../controllers/rol.controller');\r\nconst verifyToken = require('../middleware/auth.middleware');\r\n\r\n// Rutas para roles\r\nrouter.post('/', verifyToken, rolController.create);\r\nrouter.get('/', verifyToken, rolController.findAll);\r\nrouter.get('/:id', verifyToken, rolController.findOne);\r\nrouter.put('/:id', verifyToken, rolController.update);\r\nrouter.delete('/:id', verifyToken, rolController.delete);\r\n\r\nmodule.exports = router; "
+        }
+    ]
+}

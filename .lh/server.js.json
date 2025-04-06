@@ -1,0 +1,18 @@
+{
+    "sourceFile": "server.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1743969920742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1743969920741,
+            "name": "Commit-0",
+            "content": "const express = require('express');\r\nconst cors = require('cors');\r\nconst path = require('path');\r\nconst morgan = require('morgan');\r\nrequire('dotenv').config();\r\n\r\n// Importar rutas\r\nconst authRoutes = require('./src/routes/auth.routes');\r\nconst usuarioRoutes = require('./src/routes/usuario.routes');\r\nconst rolRoutes = require('./src/routes/rol.routes');\r\nconst categoriaRoutes = require('./src/routes/categoria.routes');\r\nconst productoRoutes = require('./src/routes/producto.routes');\r\nconst stockRoutes = require('./src/routes/stock.routes');\r\nconst ventaRoutes = require('./src/routes/venta.routes');\r\nconst detalleVentaRoutes = require('./src/routes/detalleVenta.routes');\r\n\r\nconst app = express();\r\n\r\n// Middlewares\r\napp.use(cors());\r\napp.use(morgan('dev'));\r\napp.use(express.json());\r\napp.use(express.urlencoded({ extended: true }));\r\n\r\n// Configuración de archivos estáticos\r\napp.use('/uploads', express.static(path.join(__dirname, 'uploads')));\r\n\r\n// Rutas\r\napp.use('/api/auth', authRoutes);\r\napp.use('/api/usuarios', usuarioRoutes);\r\napp.use('/api/roles', rolRoutes);\r\napp.use('/api/categorias', categoriaRoutes);\r\napp.use('/api/productos', productoRoutes);\r\napp.use('/api/stock', stockRoutes);\r\napp.use('/api/ventas', ventaRoutes);\r\napp.use('/api/detalle-ventas', detalleVentaRoutes);\r\n\r\n// Ruta de prueba\r\napp.get('/', (req, res) => {\r\n    res.json({ message: 'Bienvenido a la API de Bikestore' });\r\n});\r\n\r\nconst PORT = process.env.PORT || 3000;\r\napp.listen(PORT, () => {\r\n    console.log(`Servidor corriendo en el puerto ${PORT}`);\r\n});\r\n"
+        }
+    ]
+}
