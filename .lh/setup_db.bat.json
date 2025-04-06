@@ -1,0 +1,26 @@
+{
+    "sourceFile": "setup_db.bat",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1743971736093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1743972417176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,36 @@\n @echo off\r\n echo Configurando la base de datos Bike_Store...\r\n \r\n-REM Reemplaza estos valores con tus credenciales de MySQL\r\n+REM Configurar variables\r\n+set MYSQL_PATH=\"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe\"\r\n set DB_USER=root\r\n set DB_PASSWORD=\r\n \r\n+REM Verificar si MySQL está instalado\r\n+if not exist %MYSQL_PATH% (\r\n+    echo Error: MySQL no encontrado en %MYSQL_PATH%\r\n+    echo Por favor, instala MySQL Server 8.0 o actualiza la ruta en este script.\r\n+    pause\r\n+    exit /b 1\r\n+)\r\n+\r\n REM Crear la base de datos y las tablas\r\n-mysql -u %DB_USER% -p%DB_PASSWORD% < src/db/bikestore.sql\r\n+echo Creando base de datos y tablas...\r\n+%MYSQL_PATH% -u %DB_USER% -p%DB_PASSWORD% < src/db/bikestore.sql\r\n+if errorlevel 1 (\r\n+    echo Error al crear la base de datos y tablas.\r\n+    pause\r\n+    exit /b 1\r\n+)\r\n \r\n REM Insertar datos iniciales\r\n-mysql -u %DB_USER% -p%DB_PASSWORD% Bike_Store < src/db/initial_data.sql\r\n+echo Insertando datos iniciales...\r\n+%MYSQL_PATH% -u %DB_USER% -p%DB_PASSWORD% Bike_Store < src/db/initial_data.sql\r\n+if errorlevel 1 (\r\n+    echo Error al insertar datos iniciales.\r\n+    pause\r\n+    exit /b 1\r\n+)\r\n \r\n echo Base de datos configurada correctamente.\r\n pause \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1743972470278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \r\n REM Configurar variables\r\n set MYSQL_PATH=\"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe\"\r\n set DB_USER=root\r\n-set DB_PASSWORD=\r\n+set DB_PASSWORD=root\r\n \r\n REM Verificar si MySQL está instalado\r\n if not exist %MYSQL_PATH% (\r\n     echo Error: MySQL no encontrado en %MYSQL_PATH%\r\n"
+                }
+            ],
+            "date": 1743971736093,
+            "name": "Commit-0",
+            "content": "@echo off\r\necho Configurando la base de datos Bike_Store...\r\n\r\nREM Reemplaza estos valores con tus credenciales de MySQL\r\nset DB_USER=root\r\nset DB_PASSWORD=\r\n\r\nREM Crear la base de datos y las tablas\r\nmysql -u %DB_USER% -p%DB_PASSWORD% < src/db/bikestore.sql\r\n\r\nREM Insertar datos iniciales\r\nmysql -u %DB_USER% -p%DB_PASSWORD% Bike_Store < src/db/initial_data.sql\r\n\r\necho Base de datos configurada correctamente.\r\npause "
+        }
+    ]
+}

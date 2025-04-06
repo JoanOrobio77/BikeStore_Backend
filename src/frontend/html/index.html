@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bikestore - Sistema de Gestión</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚲</text></svg>">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Bikestore</div>
+            <ul class="nav-links">
+                <li><a href="#" data-section="productos">Productos</a></li>
+                <li><a href="#" data-section="categorias">Categorías</a></li>
+                <li><a href="#" data-section="ventas">Ventas</a></li>
+                <li><a href="#" data-section="stock">Stock</a></li>
+            </ul>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button id="logoutBtn">Cerrar Sesión</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección de Login -->
+        <section id="loginSection" class="active">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <p>¿No tienes cuenta? <a href="#" id="showRegisterLink">Regístrate aquí</a></p>
+        </section>
+
+        <!-- Sección de Registro -->
+        <section id="registerSection" class="hidden">
+            <h2>Registro de Usuario</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regNombre">Nombre:</label>
+                    <input type="text" id="regNombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="regTelefono">Teléfono:</label>
+                    <input type="tel" id="regTelefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Contraseña:</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <button type="submit">Registrarse</button>
+            </form>
+            <p>¿Ya tienes cuenta? <a href="#" id="showLoginLink">Inicia sesión aquí</a></p>
+        </section>
+
+        <!-- Sección de Productos -->
+        <section id="productosSection" class="hidden">
+            <h2>Gestión de Productos</h2>
+            <button id="addProductoBtn">Agregar Producto</button>
+            <div id="productosList"></div>
+        </section>
+
+        <!-- Sección de Categorías -->
+        <section id="categoriasSection" class="hidden">
+            <h2>Gestión de Categorías</h2>
+            <button id="addCategoriaBtn">Agregar Categoría</button>
+            <div id="categoriasList"></div>
+        </section>
+
+        <!-- Sección de Ventas -->
+        <section id="ventasSection" class="hidden">
+            <h2>Gestión de Ventas</h2>
+            <button id="addVentaBtn">Nueva Venta</button>
+            <div id="ventasList"></div>
+        </section>
+
+        <!-- Sección de Stock -->
+        <section id="stockSection" class="hidden">
+            <h2>Gestión de Stock</h2>
+            <div id="stockList"></div>
+        </section>
+    </main>
+
+    <!-- Modales -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="../scripts/config.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/productos.js"></script>
+    <script src="../scripts/categorias.js"></script>
+    <script src="../scripts/ventas.js"></script>
+    <script src="../scripts/stock.js"></script>
+    <script src="../scripts/main.js"></script>
+</body>
+</html> 

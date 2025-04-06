@@ -1,10 +1,17 @@
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers['x-access-token'];
+    const authHeader = req.headers['authorization'];
+    
+    if (!authHeader) {
+        return res.status(403).json({ message: 'No se proporcionó token' });
+    }
+
+    // Extraer el token del encabezado Authorization (formato: "Bearer TOKEN")
+    const token = authHeader.split(' ')[1];
     
     if (!token) {
-        return res.status(403).json({ message: 'No se proporcionó token' });
+        return res.status(403).json({ message: 'Formato de token inválido' });
     }
 
     try {

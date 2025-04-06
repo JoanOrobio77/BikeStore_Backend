@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/frontend/scripts/main.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1743971196962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1743971714071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,14 +53,16 @@\n \r\n     // Verificar autenticación\r\n     if (auth.isAuthenticated()) {\r\n         document.getElementById('loginSection').classList.add('hidden');\r\n+        document.getElementById('registerSection').classList.add('hidden');\r\n         document.querySelector('nav').classList.remove('hidden');\r\n         \r\n         // Cargar sección inicial (productos)\r\n         document.getElementById('productosSection').classList.remove('hidden');\r\n         productos.loadProductos();\r\n     } else {\r\n         document.getElementById('loginSection').classList.remove('hidden');\r\n+        document.getElementById('registerSection').classList.add('hidden');\r\n         document.querySelector('nav').classList.add('hidden');\r\n     }\r\n }); \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1743971917615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,16 +39,16 @@\n \r\n     // Cerrar modal\r\n     if (closeBtn) {\r\n         closeBtn.addEventListener('click', () => {\r\n-            modal.classList.add('hidden');\r\n+            modal.classList.remove('show');\r\n         });\r\n     }\r\n \r\n     // Cerrar modal al hacer clic fuera\r\n     window.addEventListener('click', (e) => {\r\n         if (e.target === modal) {\r\n-            modal.classList.add('hidden');\r\n+            modal.classList.remove('show');\r\n         }\r\n     });\r\n \r\n     // Verificar autenticación\r\n"
+                }
+            ],
+            "date": 1743971196962,
+            "name": "Commit-0",
+            "content": "// Navegación\r\ndocument.addEventListener('DOMContentLoaded', () => {\r\n    const navLinks = document.querySelectorAll('.nav-links a');\r\n    const sections = document.querySelectorAll('main > section');\r\n    const modal = document.getElementById('modal');\r\n    const closeBtn = document.querySelector('.close');\r\n\r\n    // Manejar navegación\r\n    navLinks.forEach(link => {\r\n        link.addEventListener('click', (e) => {\r\n            e.preventDefault();\r\n            const targetSection = link.getAttribute('data-section');\r\n            \r\n            // Ocultar todas las secciones\r\n            sections.forEach(section => {\r\n                section.classList.add('hidden');\r\n            });\r\n            \r\n            // Mostrar la sección seleccionada\r\n            document.getElementById(`${targetSection}Section`).classList.remove('hidden');\r\n            \r\n            // Cargar datos de la sección\r\n            switch(targetSection) {\r\n                case 'productos':\r\n                    productos.loadProductos();\r\n                    break;\r\n                case 'categorias':\r\n                    categorias.loadCategorias();\r\n                    break;\r\n                case 'ventas':\r\n                    ventas.loadVentas();\r\n                    break;\r\n                case 'stock':\r\n                    stock.loadStock();\r\n                    break;\r\n            }\r\n        });\r\n    });\r\n\r\n    // Cerrar modal\r\n    if (closeBtn) {\r\n        closeBtn.addEventListener('click', () => {\r\n            modal.classList.add('hidden');\r\n        });\r\n    }\r\n\r\n    // Cerrar modal al hacer clic fuera\r\n    window.addEventListener('click', (e) => {\r\n        if (e.target === modal) {\r\n            modal.classList.add('hidden');\r\n        }\r\n    });\r\n\r\n    // Verificar autenticación\r\n    if (auth.isAuthenticated()) {\r\n        document.getElementById('loginSection').classList.add('hidden');\r\n        document.querySelector('nav').classList.remove('hidden');\r\n        \r\n        // Cargar sección inicial (productos)\r\n        document.getElementById('productosSection').classList.remove('hidden');\r\n        productos.loadProductos();\r\n    } else {\r\n        document.getElementById('loginSection').classList.remove('hidden');\r\n        document.querySelector('nav').classList.add('hidden');\r\n    }\r\n}); "
+        }
+    ]
+}

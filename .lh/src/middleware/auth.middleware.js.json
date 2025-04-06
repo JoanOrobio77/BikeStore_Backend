@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/middleware/auth.middleware.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1743972140840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1743972140840,
+            "name": "Commit-0",
+            "content": "const jwt = require('jsonwebtoken');\r\n\r\nconst verifyToken = (req, res, next) => {\r\n    const authHeader = req.headers['authorization'];\r\n    \r\n    if (!authHeader) {\r\n        return res.status(403).json({ message: 'No se proporcionó token' });\r\n    }\r\n\r\n    // Extraer el token del encabezado Authorization (formato: \"Bearer TOKEN\")\r\n    const token = authHeader.split(' ')[1];\r\n    \r\n    if (!token) {\r\n        return res.status(403).json({ message: 'Formato de token inválido' });\r\n    }\r\n\r\n    try {\r\n        const decoded = jwt.verify(token, process.env.JWT_SECRET);\r\n        req.userId = decoded.id;\r\n        next();\r\n    } catch (error) {\r\n        return res.status(401).json({ message: 'Token inválido' });\r\n    }\r\n};\r\n\r\nmodule.exports = verifyToken; "
+        }
+    ]
+}

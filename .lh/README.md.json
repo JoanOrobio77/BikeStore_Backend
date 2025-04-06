@@ -1,0 +1,18 @@
+{
+    "sourceFile": "README.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1743971746901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1743971746901,
+            "name": "Commit-0",
+            "content": "# Bikestore - Sistema de Gestión\r\n\r\nSistema de gestión para una tienda de bicicletas que permite administrar productos, categorías, stock, ventas y usuarios.\r\n\r\n## Requisitos\r\n\r\n- Node.js (v14 o superior)\r\n- MySQL (v8 o superior)\r\n- NPM (v6 o superior)\r\n\r\n## Configuración\r\n\r\n1. Clonar el repositorio:\r\n```\r\ngit clone https://github.com/tu-usuario/bikestore.git\r\ncd bikestore\r\n```\r\n\r\n2. Instalar dependencias:\r\n```\r\nnpm install\r\n```\r\n\r\n3. Configurar la base de datos:\r\n   - Editar el archivo `.env` con tus credenciales de MySQL\r\n   - Ejecutar el script `setup_db.bat` para crear la base de datos y los datos iniciales\r\n\r\n4. Iniciar el servidor:\r\n```\r\nnpm start\r\n```\r\n\r\n5. Abrir el archivo `src/frontend/html/index.html` en tu navegador\r\n\r\n## Credenciales de acceso\r\n\r\n- **Administrador**:\r\n  - Email: admin@bikestore.com\r\n  - Contraseña: admin123\r\n\r\n## Estructura del proyecto\r\n\r\n```\r\nbikestore/\r\n├── src/\r\n│   ├── config/         # Configuraciones (base de datos, multer, etc.)\r\n│   ├── controllers/    # Controladores de la API\r\n│   ├── db/             # Scripts SQL\r\n│   ├── frontend/       # Frontend (HTML, CSS, JS)\r\n│   ├── middleware/     # Middleware (autenticación, etc.)\r\n│   └── routes/         # Rutas de la API\r\n├── .env                # Variables de entorno\r\n├── .gitignore          # Archivos ignorados por Git\r\n├── package.json        # Dependencias y scripts\r\n├── README.md           # Documentación\r\n├── server.js           # Punto de entrada de la aplicación\r\n└── setup_db.bat        # Script para configurar la base de datos\r\n```\r\n\r\n## Funcionalidades\r\n\r\n- Autenticación de usuarios\r\n- Gestión de productos (CRUD)\r\n- Gestión de categorías (CRUD)\r\n- Gestión de stock\r\n- Gestión de ventas\r\n- Gestión de usuarios\r\n\r\n## Tecnologías utilizadas\r\n\r\n- **Backend**: Node.js, Express, MySQL\r\n- **Frontend**: HTML, CSS, JavaScript (Vanilla)\r\n- **Autenticación**: JWT\r\n- **Base de datos**: MySQL "
+        }
+    ]
+}

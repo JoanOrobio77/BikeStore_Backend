@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/db/initial_data.sql",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1743971729150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1743972335838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n INSERT INTO rol (nombre_rol) VALUES ('Usuario');\r\n \r\n -- Insertar usuario administrador (contraseña: admin123)\r\n INSERT INTO Usuarios (nombre, telefono, email, contrasena, id_rol) \r\n-VALUES ('Administrador', '123456789', 'admin@bikestore.com', '$2a$10$X7UrH5zF5QZ5Z5Z5Z5Z5Z.5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z', 1);\r\n+VALUES ('Administrador', '123456789', 'admin@bikestore.com', '$2a$10$GxlEVHQQZWXs1KoHtHBQF.8HQ9Ld9SEPwqwXd3pYoLhqnL/6SCYxq', 1);\r\n \r\n -- Insertar categorías\r\n INSERT INTO Categoria (nombre_categoria) VALUES ('Mountain Bike');\r\n INSERT INTO Categoria (nombre_categoria) VALUES ('Bicicleta de Ruta');\r\n"
+                }
+            ],
+            "date": 1743971729150,
+            "name": "Commit-0",
+            "content": "-- Insertar roles\r\nINSERT INTO rol (nombre_rol) VALUES ('Administrador');\r\nINSERT INTO rol (nombre_rol) VALUES ('Usuario');\r\n\r\n-- Insertar usuario administrador (contraseña: admin123)\r\nINSERT INTO Usuarios (nombre, telefono, email, contrasena, id_rol) \r\nVALUES ('Administrador', '123456789', 'admin@bikestore.com', '$2a$10$X7UrH5zF5QZ5Z5Z5Z5Z5Z.5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z', 1);\r\n\r\n-- Insertar categorías\r\nINSERT INTO Categoria (nombre_categoria) VALUES ('Mountain Bike');\r\nINSERT INTO Categoria (nombre_categoria) VALUES ('Bicicleta de Ruta');\r\nINSERT INTO Categoria (nombre_categoria) VALUES ('Bicicleta Urbana');\r\nINSERT INTO Categoria (nombre_categoria) VALUES ('Bicicleta para Niños');\r\n\r\n-- Insertar productos\r\nINSERT INTO Producto (nombre_producto, descripcion, precio, id_categoria) \r\nVALUES ('Mountain Bike Pro', 'Bicicleta de montaña profesional', 1200.00, 1);\r\n\r\nINSERT INTO Producto (nombre_producto, descripcion, precio, id_categoria) \r\nVALUES ('Ruta Elite', 'Bicicleta de ruta de alta gama', 1500.00, 2);\r\n\r\nINSERT INTO Producto (nombre_producto, descripcion, precio, id_categoria) \r\nVALUES ('Ciudad Comfort', 'Bicicleta urbana cómoda', 800.00, 3);\r\n\r\nINSERT INTO Producto (nombre_producto, descripcion, precio, id_categoria) \r\nVALUES ('Kids Fun', 'Bicicleta para niños', 300.00, 4);\r\n\r\n-- Insertar stock\r\nINSERT INTO Stock (id_producto, cantidad, fecha_ingreso) VALUES (1, 10, CURDATE());\r\nINSERT INTO Stock (id_producto, cantidad, fecha_ingreso) VALUES (2, 8, CURDATE());\r\nINSERT INTO Stock (id_producto, cantidad, fecha_ingreso) VALUES (3, 15, CURDATE());\r\nINSERT INTO Stock (id_producto, cantidad, fecha_ingreso) VALUES (4, 20, CURDATE()); "
+        }
+    ]
+}

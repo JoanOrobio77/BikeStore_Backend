@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
     try {
-        const { nombre, telefono, email, contrasena, id_rol } = req.body;
+        const { nombre, telefono, email, contrasena } = req.body;
         
         // Verificar si el email ya existe
         const [existingUser] = await db.execute('SELECT * FROM Usuarios WHERE email = ?', [email]);
@@ -12,8 +12,18 @@ exports.register = async (req, res) => {
             return res.status(400).json({ message: 'El email ya está registrado' });
         }
 
+        // Verificar si existe el rol de usuario (id_rol = 2)
+        const [roles] = await db.execute('SELECT * FROM rol WHERE id_rol = 2');
+        if (roles.length === 0) {
+            // Si no existe el rol, lo creamos
+            await db.execute('INSERT INTO rol (id_rol, nombre_rol) VALUES (2, "Usuario")');
+        }
+
         // Hash de la contraseña
         const hashedPassword = await bcrypt.hash(contrasena, 10);
+
+        // Asignar rol de usuario por defecto (2)
+        const id_rol = 2;
 
         // Crear usuario
         const [result] = await db.execute(
@@ -23,7 +33,12 @@ exports.register = async (req, res) => {
 
         res.status(201).json({ message: 'Usuario registrado exitosamente' });
     } catch (error) {
-        res.status(500).json({ message: 'Error al registrar usuario', error: error.message });
+        console.error('Error en registro:', error);
+        res.status(500).json({ 
+            message: 'Error al registrar usuario', 
+            error: error.message,
+            details: error.stack 
+        });
     }
 };
 
@@ -31,8 +46,14 @@ exports.login = async (req, res) => {
     try {
         const { email, contrasena } = req.body;
 
-        // Buscar usuario
-        const [users] = await db.execute('SELECT * FROM Usuarios WHERE email = ?', [email]);
+        // Buscar usuario y su rol
+        const [users] = await db.execute(`
+            SELECT u.*, r.nombre_rol 
+            FROM Usuarios u 
+            JOIN rol r ON u.id_rol = r.id_rol 
+            WHERE u.email = ?
+        `, [email]);
+
         if (users.length === 0) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
@@ -47,8 +68,13 @@ exports.login = async (req, res) => {
 
         // Generar token
         const token = jwt.sign(
-            { id: user.id_usuario, email: user.email, rol: user.id_rol },
-            process.env.JWT_SECRET,
+            { 
+                id: user.id_usuario, 
+                email: user.email, 
+                rol: user.id_rol,
+                rolNombre: user.nombre_rol 
+            },
+            process.env.JWT_SECRET || 'bikestore_secret_key_2024',
             { expiresIn: '24h' }
         );
 
@@ -58,10 +84,16 @@ exports.login = async (req, res) => {
                 id: user.id_usuario,
                 nombre: user.nombre,
                 email: user.email,
-                rol: user.id_rol
+                rol: user.id_rol,
+                rolNombre: user.nombre_rol
             }
         });
     } catch (error) {
-        res.status(500).json({ message: 'Error al iniciar sesión', error: error.message });
+        console.error('Error en login:', error);
+        res.status(500).json({ 
+            message: 'Error al iniciar sesión', 
+            error: error.message,
+            details: error.stack 
+        });
     }
 }; 

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/frontend/scripts/config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1743971424887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1743971424887,
+            "name": "Commit-0",
+            "content": "// Configuración de la API\r\nconst API_URL = 'http://localhost:3000/api'; "
+        }
+    ]
+}
