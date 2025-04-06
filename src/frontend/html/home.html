@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bikestore - Tienda de Bicicletas</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚲</text></svg>">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Bikestore</div>
+            <ul class="nav-links">
+                <li><a href="home.html" class="active" id="inicioLink">Inicio</a></li>
+                <li><a href="#" id="categoriasLink">Categorías</a></li>
+                <li><a href="#" id="contactoLink">Contacto</a></li>
+                <li><a href="index.html">Panel de Administración</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Bienvenido a Bikestore</h1>
+            <p>Tu destino para encontrar las mejores bicicletas y accesorios</p>
+        </section>
+
+        <section class="categorias-filter">
+            <h2>Filtrar por Categoría</h2>
+            <div id="categoriasFilter" class="categorias-container">
+                <!-- Las categorías se cargarán dinámicamente -->
+            </div>
+        </section>
+
+        <section class="productos">
+            <h2>Nuestros Productos</h2>
+            <div id="productosContainer" class="productos-grid">
+                <!-- Los productos se cargarán dinámicamente -->
+                <div class="loading">Cargando productos...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bikestore</h3>
+                <p>Tu tienda de confianza para bicicletas y accesorios.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@bikestore.com</p>
+                <p>Teléfono: (123) 456-7890</p>
+                <p>Dirección: Calle Principal #123, Ciudad</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="home.html" id="inicioFooterLink">Inicio</a></li>
+                    <li><a href="#" id="categoriasFooterLink">Categorías</a></li>
+                    <li><a href="#" id="contactoFooterLink">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Bikestore. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/config.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/home.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM cargado, inicializando home...');
+            
+            // Agregar event listeners para los enlaces de inicio
+            const inicioLink = document.getElementById('inicioLink');
+            const inicioFooterLink = document.getElementById('inicioFooterLink');
+            
+            if (inicioLink) {
+                console.log('Enlace de inicio encontrado en el navbar');
+                inicioLink.addEventListener('click', (e) => {
+                    console.log('Clic en enlace de inicio del navbar');
+                    console.log('URL actual:', window.location.href);
+                    console.log('URL destino:', e.target.href);
+                });
+            } else {
+                console.log('No se encontró el enlace de inicio en el navbar');
+            }
+            
+            if (inicioFooterLink) {
+                console.log('Enlace de inicio encontrado en el footer');
+                inicioFooterLink.addEventListener('click', (e) => {
+                    console.log('Clic en enlace de inicio del footer');
+                    console.log('URL actual:', window.location.href);
+                    console.log('URL destino:', e.target.href);
+                });
+            } else {
+                console.log('No se encontró el enlace de inicio en el footer');
+            }
+            
+            // Inicializar la página
+            if (typeof home !== 'undefined' && typeof home.init === 'function') {
+                console.log('Inicializando home...');
+                home.init();
+            } else {
+                console.error('El objeto home no está definido o no tiene el método init');
+            }
+        });
+    </script>
+</body>
+</html> 

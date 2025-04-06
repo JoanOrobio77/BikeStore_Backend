@@ -13,43 +13,58 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Ocultar todas las secciones
             sections.forEach(section => {
-                section.classList.add('hidden');
+                if (section) {
+                    section.classList.add('hidden');
+                }
             });
             
             // Mostrar la sección seleccionada
-            document.getElementById(`${targetSection}Section`).classList.remove('hidden');
-            
-            // Cargar datos de la sección
-            switch(targetSection) {
-                case 'productos':
-                    productos.loadProductos();
-                    break;
-                case 'categorias':
-                    categorias.loadCategorias();
-                    break;
-                case 'ventas':
-                    ventas.loadVentas();
-                    break;
-                case 'stock':
-                    stock.loadStock();
-                    break;
+            const targetElement = document.getElementById(`${targetSection}Section`);
+            if (targetElement) {
+                targetElement.classList.remove('hidden');
+                
+                // Cargar datos de la sección
+                switch(targetSection) {
+                    case 'productos':
+                        if (typeof productos !== 'undefined') {
+                            productos.loadProductos();
+                        }
+                        break;
+                    case 'categorias':
+                        if (typeof categorias !== 'undefined') {
+                            categorias.loadCategorias();
+                        }
+                        break;
+                    case 'ventas':
+                        if (typeof ventas !== 'undefined') {
+                            ventas.loadVentas();
+                        }
+                        break;
+                    case 'stock':
+                        if (typeof stock !== 'undefined') {
+                            stock.loadStock();
+                        }
+                        break;
+                }
             }
         });
     });
 
     // Cerrar modal
-    if (closeBtn) {
+    if (closeBtn && modal) {
         closeBtn.addEventListener('click', () => {
             modal.classList.remove('show');
         });
     }
 
     // Cerrar modal al hacer clic fuera
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('show');
-        }
-    });
+    if (modal) {
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+    }
 
     // Verificar autenticación
     if (auth.isAuthenticated()) {

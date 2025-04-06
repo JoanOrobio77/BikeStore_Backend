@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1743969920742,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1743981195389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n app.use(express.urlencoded({ extended: true }));\r\n \r\n // Configuración de archivos estáticos\r\n app.use('/uploads', express.static(path.join(__dirname, 'uploads')));\r\n+app.use(express.static(path.join(__dirname, 'src/frontend')));\r\n \r\n // Rutas\r\n app.use('/api/auth', authRoutes);\r\n app.use('/api/usuarios', usuarioRoutes);\r\n@@ -36,11 +37,16 @@\n app.use('/api/detalle-ventas', detalleVentaRoutes);\r\n \r\n // Ruta de prueba\r\n app.get('/', (req, res) => {\r\n-    res.json({ message: 'Bienvenido a la API de Bikestore' });\r\n+    res.sendFile(path.join(__dirname, 'src/frontend/html/home.html'));\r\n });\r\n \r\n+// Ruta para el panel de administración\r\n+app.get('/admin', (req, res) => {\r\n+    res.sendFile(path.join(__dirname, 'src/frontend/html/index.html'));\r\n+});\r\n+\r\n const PORT = process.env.PORT || 3000;\r\n app.listen(PORT, () => {\r\n     console.log(`Servidor corriendo en el puerto ${PORT}`);\r\n });\r\n"
                 }
             ],
             "date": 1743969920741,

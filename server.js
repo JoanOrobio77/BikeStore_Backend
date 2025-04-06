@@ -24,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuración de archivos estáticos
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'src/frontend')));
 
 // Rutas
 app.use('/api/auth', authRoutes);
@@ -37,7 +38,12 @@ app.use('/api/detalle-ventas', detalleVentaRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
-    res.json({ message: 'Bienvenido a la API de Bikestore' });
+    res.sendFile(path.join(__dirname, 'src/frontend/html/home.html'));
+});
+
+// Ruta para el panel de administración
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/frontend/html/index.html'));
 });
 
 const PORT = process.env.PORT || 3000;

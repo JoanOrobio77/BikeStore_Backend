@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1743971091103,
@@ -24,6 +24,10 @@
                 {
                     "date": 1743973754565,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,11 +96,10 @@\n     </main>\r\n \r\n     <!-- Modales -->\r\n     <div id=\"modal\" class=\"modal hidden\">\r\n-        <div class=\"modal-content\">\r\n-            <span class=\"close\">&times;</span>\r\n-            <div id=\"modalContent\"></div>\r\n+        <div id=\"modalContent\" class=\"modal-content\">\r\n+            <!-- El contenido del modal se cargará dinámicamente -->\r\n         </div>\r\n     </div>\r\n \r\n     <script src=\"../scripts/config.js\"></script>\r\n"
+                },
+                {
+                    "date": 1743980488332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n     <header>\r\n         <nav>\r\n             <div class=\"logo\">Bikestore</div>\r\n             <ul class=\"nav-links\">\r\n+                <li><a href=\"home.html\">Inicio</a></li>\r\n                 <li><a href=\"#\" data-section=\"productos\">Productos</a></li>\r\n                 <li><a href=\"#\" data-section=\"categorias\">Categorías</a></li>\r\n                 <li><a href=\"#\" data-section=\"ventas\">Ventas</a></li>\r\n                 <li><a href=\"#\" data-section=\"stock\">Stock</a></li>\r\n"
                 }
             ],
             "date": 1743971091103,
